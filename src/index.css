@@ -15,3 +15,24 @@ body {
   display: flex;
   place-items: center;
 }
+
+.deploycard {
+  width: 18rem;
+}
+
+.running {
+  background-color: #428FDC;
+}
+
+.success {
+  background-color: #2DA160;
+}
+
+.failed {
+  background-color: #EC5941;
+}
+
+a {
+  color:white;
+  text-decoration: none;
+}

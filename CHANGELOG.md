@@ -10,6 +10,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Added :
     - [#2] Ajout de Bootstrap
     - [#1] Initialisation du Projet
-
+    - [#4] Ajout d'une 'deploy card'
+    
 - Changed :
     - [#2] Nettoyage du Code
