@@ -12,4 +12,4 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
     - [#1] Initialisation du Projet
 
 - Changed :
-    - [#3] Nettoyage du Code
+    - [#2] Nettoyage du Code
