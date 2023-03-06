@@ -3,70 +3,10 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import "./App.css";
 import DeployGroup from "./components/DeployGroup";
+import getDeployGroup from "./functions/getDeployGroup";
 
 function App() {
-  var deployCotro = {
-    name: "Cotrolia",
-    deployList: [
-      {
-        id: 192,
-        avatar_url:
-          "https://git.code42.io/uploads/-/system/project/avatar/192/CloudOrbis_Favicon.png",
-        name: "Deploiement COTROLIA",
-        description:
-          "Dépôt intégrant l'ensemble des scripts / fichiers pour la mise à jour de l'environnement COTROLIA !",
-        latestpipeline: {
-          id: 11664,
-          web_url: "https://yweelon.fr",
-        },
-      },
-      {
-        id: 191,
-        avatar_url: null,
-        name: "Migration",
-        description: "Database migration scripts",
-        latestpipeline: {
-          id: 37,
-          web_url: "https://yweelon.fr",
-        },
-      },
-      {
-        id: 161,
-        avatar_url:
-          "https://git.code42.io/uploads/-/system/project/avatar/161/themes.png",
-        name: "Thème Code42",
-        description: "Thème code42 basé sur le thème eldy",
-        latestpipeline: {
-          id: 11484,
-          web_url: "https://yweelon.fr",
-        },
-      },
-      {
-        id: 154,
-        avatar_url:
-          "https://git.code42.io/uploads/-/system/project/avatar/154/Icone_repturn.png",
-        name: "Frontend",
-        description: "",
-        latestpipeline: {
-          id: 37,
-          web_url: "https://yweelon.fr",
-        },
-      },
-      {
-        id: 123,
-        avatar_url:
-          "https://git.code42.io/uploads/-/system/project/avatar/123/folder.png",
-        name: "Documentation",
-        description:
-          "Dépot contenant des documentations du projet COTROLIA / REPTURN",
-        latestpipeline: {
-          id: 3553,
-          web_url: "https://yweelon.fr",
-        },
-      },
-    ],
-  };
-
+  var deployCotro = getDeployGroup(37);
   var deployFMM = {
     name: "FMM",
     deployList: [
