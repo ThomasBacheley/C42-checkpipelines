@@ -7,9 +7,10 @@
       "name": "Deploiement COTROLIA",
       "description": "Dépôt intégrant l'ensemble des scripts / fichiers pour la mise à jour de l'environnement COTROLIA !",
       "latestpipeline": {
-        "id": 11664,
-        "web_url": "https://yweelon.fr",
-        "status": "running"
+        "id": 11696,
+        "ref": "develop2",
+        "status": "success",
+        "web_url": "https://git.code42.io/dev-clients/cotrolia/deploiement-cotrolia/-/pipelines/11696"
       }
     },
     {

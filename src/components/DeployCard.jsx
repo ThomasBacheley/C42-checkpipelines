@@ -22,7 +22,7 @@ function DeployCard(props) {
             className={progressClass}
           >
             <a target={"_blank"} href={props.deploy.latestpipeline.web_url}>
-              #{props.deploy.latestpipeline.id}
+              #{props.deploy.latestpipeline.ref} ({props.deploy.latestpipeline.id})
             </a>
           </div>
         </div>

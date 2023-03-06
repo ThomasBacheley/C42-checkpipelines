@@ -5,8 +5,14 @@ import DeployGroup from "./components/DeployGroup";
 
 import deployCotro from "./data/deployCotrolia.json";
 import deployFMM from "./data/deployFMM.json";
+import { getDeployGroup } from "./functions/getDeployGroup";
+
+//37 -> cotrolia
+//75 -> FMM
+
 
 function App() {
+  getDeployGroup(37).then(result=>{console.log(result)});
   return (
     <div className="App">
       <DeployGroup

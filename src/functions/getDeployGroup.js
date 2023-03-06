@@ -1,4 +1,5 @@
 import axios from "axios";
+import getLatestPipeline from "./getLatestPipeline";
 
 /**
  *
@@ -21,16 +22,13 @@ async function getDeployGroup(groupid) {
 
       resp.data.forEach((data) => {
         deploy.name = data.namespace.name;
+        let latestpipeline = getLatestPipeline(data.id).then((result)=>{latestpipeline=result});
         deploy.deployList.push({
           id: data.id,
           avatar_url: data.avatar_url,
           name: data.name,
           description: data.description,
-          latestpipeline: {
-            id: 11664,
-            web_url: "https://yweelon.fr",
-            status: "running",
-          },
+          latestpipeline: latestpipeline,
         });
       });
 
