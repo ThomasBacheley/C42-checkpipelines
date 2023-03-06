@@ -1,0 +1,60 @@
+{
+  "name": "Cotrolia",
+  "deployList": [
+    {
+      "id": 192,
+      "avatar_url": "https://git.code42.io/uploads/-/system/project/avatar/192/CloudOrbis_Favicon.png",
+      "name": "Deploiement COTROLIA",
+      "description": "Dépôt intégrant l'ensemble des scripts / fichiers pour la mise à jour de l'environnement COTROLIA !",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr",
+        "status": "running"
+      }
+    },
+    {
+      "id": 191,
+      "avatar_url": null,
+      "name": "Migration",
+      "description": "Database migration scripts",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr",
+        "status": "warning"
+      }
+    },
+    {
+      "id": 161,
+      "avatar_url": "https://git.code42.io/uploads/-/system/project/avatar/161/themes.png",
+      "name": "Thème Code42",
+      "description": "Thème code42 basé sur le thème eldy",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr",
+        "status": "failed"
+      }
+    },
+    {
+      "id": 154,
+      "avatar_url": "https://git.code42.io/uploads/-/system/project/avatar/154/Icone_repturn.png",
+      "name": "Frontend",
+      "description": "",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr",
+        "status": "success"
+      }
+    },
+    {
+      "id": 123,
+      "avatar_url": "https://git.code42.io/uploads/-/system/project/avatar/123/folder.png",
+      "name": "Documentation",
+      "description": "Dépot contenant des documentations du projet COTROLIA / REPTURN",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr",
+        "status": "success"
+      }
+    }
+  ]
+}

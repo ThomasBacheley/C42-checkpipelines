@@ -1,6 +1,10 @@
 function DeployCard(props) {
+  let progressClass =
+    "progress-bar progress-bar-striped " + props.deploy.latestpipeline.status;
 
-  let progressClass = "progress-bar " + props.deploy.latestpipeline.status;
+  props.deploy.latestpipeline.status == "running"
+    ? (progressClass += " progress-bar-animated")
+    : (progressClass += "");
 
   return (
     <div className="deploycard card p-2 m-2">
@@ -10,12 +14,12 @@ function DeployCard(props) {
         {/* <p className="card-text">{props.deploy.description}</p> */}
         <div className="progress">
           <div
-            role="progressbar progress-bar-striped progress-bar-animated"
+            role="progressbar"
             aria-valuemin="0"
             aria-valuemax="100"
             aria-valuenow="100"
-            style={{width:'100%'}}
-            className={{progressClass}}
+            style={{ width: "100%" }}
+            className={progressClass}
           >
             <a target={"_blank"} href={props.deploy.latestpipeline.web_url}>
               #{props.deploy.latestpipeline.id}
