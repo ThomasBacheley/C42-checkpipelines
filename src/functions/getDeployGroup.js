@@ -19,9 +19,6 @@ function getDeployGroup(groupid) {
       reduxdeploy.dispatch(init({ name: resp.data[0].name }));
 
       resp.data.forEach((data) => {
-        let latestpipeline = getLatestPipeline(data.id).then((result) => {
-          latestpipeline = result;
-        });
 
         var deploy = {
           id: data.id,
@@ -38,7 +35,8 @@ function getDeployGroup(groupid) {
         reduxdeploy.dispatch(addDeploy({deploy:deploy}));
       });
 
-      return deploy;
+
+      return [];
     })
     .catch((err) => {
       console.error(err);
