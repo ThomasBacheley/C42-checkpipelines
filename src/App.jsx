@@ -7,14 +7,22 @@ import deployCotro from "./data/deployCotrolia.json";
 import deployFMM from "./data/deployFMM.json";
 import { getDeployGroup } from "./functions/getDeployGroup";
 
+import reduxdeploy from "./redux/Deployement";
+
 //37 -> cotrolia
 //75 -> FMM
 
-
 function App() {
-  getDeployGroup(37).then(result=>{console.log(result)});
+  getDeployGroup(37);
   return (
     <div className="App">
+      <button
+        onClick={() => {
+          console.log(reduxdeploy.getState().deployement);
+        }}
+      >
+        Click Me
+      </button>
       <DeployGroup
         groupname={deployCotro.name}
         deployList={deployCotro.deployList}

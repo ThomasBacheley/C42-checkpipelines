@@ -1,4 +1,5 @@
 import axios from "axios";
+import reduxdeploy, { addDeploy, init } from "../redux/Deployement";
 import getLatestPipeline from "./getLatestPipeline";
 
 /**
@@ -6,8 +7,8 @@ import getLatestPipeline from "./getLatestPipeline";
  * @param {int} groupid
  * @returns
  */
-async function getDeployGroup(groupid) {
-  var temp = await axios
+function getDeployGroup(groupid) {
+  axios
     .get(
       "https://git.code42.io/api/v4/groups/" +
         groupid +
@@ -15,21 +16,26 @@ async function getDeployGroup(groupid) {
         import.meta.env.VITE_GITLAB_ACCESS_TOKEN
     )
     .then((resp) => {
-      var deploy = {
-        name: "",
-        deployList: [],
-      };
+      reduxdeploy.dispatch(init({ name: resp.data[0].name }));
 
       resp.data.forEach((data) => {
-        deploy.name = data.namespace.name;
-        let latestpipeline = getLatestPipeline(data.id).then((result)=>{latestpipeline=result});
-        deploy.deployList.push({
+        let latestpipeline = getLatestPipeline(data.id).then((result) => {
+          latestpipeline = result;
+        });
+
+        var deploy = {
           id: data.id,
           avatar_url: data.avatar_url,
           name: data.name,
           description: data.description,
-          latestpipeline: latestpipeline,
-        });
+          latestpipeline: {
+            id: 11664,
+            web_url: "https://yweelon.fr",
+            status: "warning",
+          }
+        };
+
+        reduxdeploy.dispatch(addDeploy({deploy:deploy}));
       });
 
       return deploy;
@@ -37,6 +43,8 @@ async function getDeployGroup(groupid) {
     .catch((err) => {
       console.error(err);
     });
+
+  var temp = [];
 
   return temp;
 }
