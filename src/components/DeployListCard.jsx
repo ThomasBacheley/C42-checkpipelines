@@ -4,7 +4,7 @@ function DeployListCard(props) {
   return (
     <div className="d-inline-flex justify-content-around flex-wrap">
       {props.deployList.map((deploy) => (
-        <DeployCard deploy={deploy}></DeployCard>
+        <DeployCard key={deploy.id} deploy={deploy}></DeployCard>
       ))}
     </div>
   );
