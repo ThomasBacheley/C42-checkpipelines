@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 import DeployGroup from "./components/DeployGroup";
 import { getDeployGroup } from "./functions/getDeployGroup";
-import { getDeployGroupName } from "./functions/getDeployGroupName";
 
 // Data en Brute
 import deployCotro from "./data/deployCotrolia.json";
@@ -14,10 +13,7 @@ import deployFMM from "./data/deployFMM.json";
 //75 -> FMM
 
 function App() {
-  const [deploygroupCotroName, setdeploygroupCotroName] = useState("");
   const [deploygroupCotroList, setdeploygroupCotroList] = useState([]);
-
-  const [deploygroupFMMName, setdeploygroupFMMName] = useState("");
   const [deploygroupFMMList, setdeploygroupFMMList] = useState([]);
 
   const [clicklock,setclicklock] = useState(false);
@@ -27,22 +23,6 @@ function App() {
 
     return result;
   };
-
-  const asyncGetDeployGroupName = async (groupid) => {
-    const result = await getDeployGroupName(groupid);
-
-    return result;
-  };
-
-  useEffect(() => {
-    asyncGetDeployGroupName(37).then((res) => {
-      setdeploygroupCotroName(res);
-    });
-
-    asyncGetDeployGroupName(75).then((res) => {
-      setdeploygroupFMMName(res);
-    });
-  }, []);
 
   useEffect(() => {
     asyncGetDeployGroup(37).then((res) => {
@@ -62,11 +42,11 @@ function App() {
   return (
     <div className="App">
       <DeployGroup
-        groupname={deploygroupCotroName}
+        groupname={"Cotrolia"}
         deployList={deploygroupCotroList}
       ></DeployGroup>
       <DeployGroup
-        groupname={deploygroupFMMName}
+        groupname={"FMM"}
         deployList={deploygroupFMMList }
       ></DeployGroup>
     </div>
