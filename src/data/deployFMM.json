@@ -1,0 +1,59 @@
+{
+  "name": "fmm",
+  "deployList": [
+    {
+      "id": 247,
+      "avatar_url": null,
+      "name": "FMM - WIKI",
+      "description": "Dépôt contenant la documentation technique du projet FMM.",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr"
+      }
+    },
+    {
+      "id": 215,
+      "avatar_url": "https://git.code42.io/uploads/-/system/project/avatar/215/CloudOrbis_Favicon.png",
+      "name": "Déploiement FMM",
+      "description": "Dépôt intégrant l'ensemble des scripts / fichiers pour la mise à jour de l'environnement FMM !",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr",
+        "status": "running"
+      }
+    },
+    {
+      "id": 213,
+      "avatar_url": "https://git.code42.io/uploads/-/system/project/avatar/213/Capture_d_écran_2022-12-11_à_22.54.34.png",
+      "name": "FMM - Dolibarr",
+      "description": "Dépôt contenant le CRM Dolibarr FMM",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr",
+        "status": "running"
+      }
+    },
+    {
+      "id": 212,
+      "avatar_url": "https://git.code42.io/uploads/-/system/project/avatar/212/logo-FMM-04WP.png",
+      "name": "FMM - Module",
+      "description": "Module DOLIBARR FMM dédié aux usages métiers du clients (conf, PDF, ...)",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr",
+        "status": "running"
+      }
+    },
+    {
+      "id": 210,
+      "avatar_url": "https://git.code42.io/uploads/-/system/project/avatar/210/Capture_d_écran_2022-12-11_à_22.53.13.png",
+      "name": "Module suivi qualité",
+      "description": "Module DOLIABRR permettant de définir  sur des produits des critères bloquant OU non pour leurs commandes.",
+      "latestpipeline": {
+        "id": 11664,
+        "web_url": "https://yweelon.fr",
+        "status": "running"
+      }
+    }
+  ]
+}
