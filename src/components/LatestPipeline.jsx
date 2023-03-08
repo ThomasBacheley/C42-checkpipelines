@@ -3,6 +3,7 @@
  * @param {*} props
  */
 function DeployCard(props) {
+  
   if (props.latestpipeline != null) {
     let progressClass =
       "progress-bar progress-bar-striped " + props.latestpipeline.status;
