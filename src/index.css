@@ -39,3 +39,8 @@ a:hover {
   color: white;
   font-weight: 700;
 }
+
+.nopipeline {
+  font-size: .8em;
+  color:#99a0a7
+}

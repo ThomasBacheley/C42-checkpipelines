@@ -8,6 +8,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 # <span style='color:white;background-color:#ed6b00;border-radius:5px;padding: 5px;font-size:small'>Nouveautés</span> [1.1.00] - 2023-??-??
 
 - Fixed :
+    - [#30] Les pipelines par défaut (un depot n'a pas forcement de pipeline) sont maintenant plus compréhensible
     - [#28] Le nom est maintenant corrigé et doit etre mis de façon brute
 
 [1.0.00] - 2023-03-08
