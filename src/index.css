@@ -1,19 +1,5 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
 }
 
 .deploycard {
@@ -21,18 +7,35 @@ body {
 }
 
 .running {
-  background-color: #428FDC;
+  background-color: #428fdc;
 }
 
 .success {
-  background-color: #2DA160;
+  background-color: #2da160;
 }
 
 .failed {
-  background-color: #EC5941;
+  background-color: #dd2b0e;
+}
+
+.warning {
+  background-color: #ab6100;
+}
+
+.undefined {
+  background-color: #868686;
 }
 
 a {
-  color:white;
+  color: white;
   text-decoration: none;
+}
+
+.progress:hover {
+  transform: scale(1.1);
+}
+
+a:hover {
+  color: white;
+  font-weight: 700;
 }
