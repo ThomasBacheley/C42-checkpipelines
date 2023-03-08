@@ -1,13 +1,14 @@
 import axios from "axios";
+import reduxdeploy, { addDeploy, init } from "../redux/Deployement";
 import getLatestPipeline from "./getLatestPipeline";
+import reduxlatestpipeline from "../redux/LatestPipeline";
 
 /**
- *
+ * get all Deployement from a groupip
  * @param {int} groupid
- * @returns
  */
-async function getDeployGroup(groupid) {
-  var temp = await axios
+function getDeployGroup(groupid) {
+  return axios
     .get(
       "https://git.code42.io/api/v4/groups/" +
         groupid +
@@ -15,34 +16,40 @@ async function getDeployGroup(groupid) {
         import.meta.env.VITE_GITLAB_ACCESS_TOKEN
     )
     .then((resp) => {
-      var deploy = {
+      var deploygroup = {
         name: "",
         deployList: [],
       };
 
+      deploygroup.name = resp.data[0].name;
+
+      // reduxdeploy.dispatch(init({ name: resp.data[0].name }));
+
       resp.data.forEach((data) => {
-        deploy.name = data.namespace.name;
-        let latestpipeline = getLatestPipeline(data.id).then((result)=>{latestpipeline=result});
-        deploy.deployList.push({
-          id: data.id,
-          avatar_url: data.avatar_url,
-          name: data.name,
-          description: data.description,
-          latestpipeline: latestpipeline,
+        getLatestPipeline(data.id).then((pipeline) => {
+          var deploy = {
+            id: data.id,
+            avatar_url: data.avatar_url,
+            name: data.name,
+            description: data.description,
+            latestpipeline: pipeline,
+          };
+
+          deploygroup.deployList.push(deploy);
+          // console.log('Got latest pipeline', deploygroup)
+
         });
       });
 
-      return deploy;
+      return deploygroup;
     })
     .catch((err) => {
       console.error(err);
     });
-
-  return temp;
 }
 
 /**
- *
+ * get all deployement for each item in the array
  * @param {array} groupid_array
  * @returns
  */

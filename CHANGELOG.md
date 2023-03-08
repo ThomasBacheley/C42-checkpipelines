@@ -9,6 +9,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - Added :
     - [#17] Ajout d'une image par défaut pour les deploiements qui n'en n'ont pas
+    - [#6] Ajout de redux
     - [#5] Ajout d'Axios pour recuperer les données
     - [#11] Ajout d'un 'groupe de deployement'
     - [#3] Ajout d'une liste de deploycard
