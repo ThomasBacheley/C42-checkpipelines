@@ -1,6 +1,7 @@
 import axios from "axios";
 import reduxdeploy, { addDeploy, init } from "../redux/Deployement";
 import getLatestPipeline from "./getLatestPipeline";
+import reduxlatestpipeline from "../redux/LatestPipeline";
 
 /**
  *
@@ -19,17 +20,16 @@ function getDeployGroup(groupid) {
       reduxdeploy.dispatch(init({ name: resp.data[0].name }));
 
       resp.data.forEach((data) => {
+        
+        console.log(getLatestPipeline(data.id));
+        var pipeline = reduxlatestpipeline.getState().latestpipeline.pipeline;
 
         var deploy = {
           id: data.id,
           avatar_url: data.avatar_url,
           name: data.name,
           description: data.description,
-          latestpipeline: {
-            id: 11664,
-            web_url: "https://yweelon.fr",
-            status: "warning",
-          }
+          latestpipeline: pipeline
         };
 
         reduxdeploy.dispatch(addDeploy({deploy:deploy}));
