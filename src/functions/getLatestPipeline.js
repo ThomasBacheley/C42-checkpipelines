@@ -6,7 +6,7 @@ import reduxlatestpipeline, { add } from "../redux/LatestPipeline";
  * @param {int} projectid the projectid
  */
 function getLatestPipeline(projectid) {
-  axios
+  return axios
     .get(
       "https://git.code42.io/api/v4/projects/" +
         projectid +
@@ -14,15 +14,25 @@ function getLatestPipeline(projectid) {
         import.meta.env.VITE_GITLAB_ACCESS_TOKEN
     )
     .then((resp) => {
-      var pipeline = {
-        id: resp.data[0].id,
-        ref: resp.data[0].ref,
-        status: resp.data[0].status,
-        web_url: resp.data[0].web_url,
+      var Gitpipeline = {
+        id: 0,
+        ref: "ref",
+        status: undefined,
+        web_url: "https://google.com",
       };
 
-      reduxlatestpipeline.dispatch(add({latestpipeline:pipeline}));
+      if (resp.data[0]) {
+        Gitpipeline = {
+          id: resp.data[0].id,
+          ref: resp.data[0].ref,
+          status: resp.data[0].status,
+          web_url: resp.data[0].web_url,
+        };
+      }
 
+      reduxlatestpipeline.dispatch(add({ latestpipeline: Gitpipeline }));
+
+      return Gitpipeline;
     });
 }
 export default getLatestPipeline;

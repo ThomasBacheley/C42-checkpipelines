@@ -3,7 +3,7 @@ import "../DeployIMG.css";
 function DeployIMG(props) {
   return (
     <div
-      className="gl-avatar gl-avatar-identicon gl-avatar-identicon-bg1"
+      className="defaultimg"
       itemProp="image"
     >
         {props.deployname.charAt(0)}

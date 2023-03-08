@@ -7,10 +7,10 @@
       "name": "Deploiement COTROLIA",
       "description": "Dépôt intégrant l'ensemble des scripts / fichiers pour la mise à jour de l'environnement COTROLIA !",
       "latestpipeline": {
-        "id": 11696,
+        "id": 11786,
         "ref": "develop2",
-        "status": "success",
-        "web_url": "https://git.code42.io/dev-clients/cotrolia/deploiement-cotrolia/-/pipelines/11696"
+        "status": "failed",
+        "web_url": "https://git.code42.io/dev-clients/cotrolia/deploiement-cotrolia/-/pipelines/11786"
       }
     },
     {

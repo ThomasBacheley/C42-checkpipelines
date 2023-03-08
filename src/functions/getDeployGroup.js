@@ -5,10 +5,10 @@ import reduxlatestpipeline from "../redux/LatestPipeline";
 
 /**
  * get all Deployement from a groupip
- * @param {int} groupid 
+ * @param {int} groupid
  */
 function getDeployGroup(groupid) {
-  axios
+  return axios
     .get(
       "https://git.code42.io/api/v4/groups/" +
         groupid +
@@ -16,22 +16,32 @@ function getDeployGroup(groupid) {
         import.meta.env.VITE_GITLAB_ACCESS_TOKEN
     )
     .then((resp) => {
-      reduxdeploy.dispatch(init({ name: resp.data[0].name }));
+      var deploygroup = {
+        name: "",
+        deployList: [],
+      };
+
+      deploygroup.name = resp.data[0].name;
+
+      // reduxdeploy.dispatch(init({ name: resp.data[0].name }));
 
       resp.data.forEach((data) => {
-        
-        var pipeline = reduxlatestpipeline.getState().latestpipeline.pipeline;
+        getLatestPipeline(data.id).then((pipeline) => {
+          var deploy = {
+            id: data.id,
+            avatar_url: data.avatar_url,
+            name: data.name,
+            description: data.description,
+            latestpipeline: pipeline,
+          };
 
-        var deploy = {
-          id: data.id,
-          avatar_url: data.avatar_url,
-          name: data.name,
-          description: data.description,
-          latestpipeline: pipeline
-        };
+          deploygroup.deployList.push(deploy);
+          // console.log('Got latest pipeline', deploygroup)
 
-        reduxdeploy.dispatch(addDeploy({deploy:deploy}));
+        });
       });
+
+      return deploygroup;
     })
     .catch((err) => {
       console.error(err);
@@ -40,8 +50,8 @@ function getDeployGroup(groupid) {
 
 /**
  * get all deployement for each item in the array
- * @param {array} groupid_array 
- * @returns 
+ * @param {array} groupid_array
+ * @returns
  */
 async function getDeployGroupArray(groupid_array) {
   var temparray = [];

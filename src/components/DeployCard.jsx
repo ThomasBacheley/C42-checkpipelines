@@ -6,9 +6,9 @@ import DeployIMG from "./DeployIMG";
  */
 function DeployCard(props) {
   let progressClass =
-    "progress-bar progress-bar-striped " + props.deploy.latestpipeline.status;
+    "progress-bar progress-bar-striped " + props.deploy.latestpipeline?.status;
 
-  props.deploy.latestpipeline.status == "running"
+  props.deploy.latestpipeline?.status == "running"
     ? (progressClass += " progress-bar-animated")
     : (progressClass += "");
 
@@ -31,9 +31,9 @@ function DeployCard(props) {
             style={{ width: "100%" }}
             className={progressClass}
           >
-            <a target={"_blank"} href={props.deploy.latestpipeline.web_url}>
-              #{props.deploy.latestpipeline.ref} (
-              {props.deploy.latestpipeline.id})
+            <a target={"_blank"} href={props.deploy.latestpipeline?.web_url}>
+              #{props.deploy.latestpipeline?.ref} (
+              {props.deploy.latestpipeline?.id})
             </a>
           </div>
         </div>
