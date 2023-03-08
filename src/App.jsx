@@ -23,14 +23,13 @@ function App() {
 
   const asyncGetDeployGroup = async (groupid) => {
     const result = await getDeployGroup(groupid);
-
     return result;
   };
 
-  const asyncGetDeployList = async (groupid)=>{
-    const result = await getDeployList(groupid);
+  const asyncGetDeployList = async (groupid, groupname) => {
+    const result = await getDeployList(groupid, groupname);
     return result;
-  }
+  };
 
   useEffect(() => {
     asyncGetDeployGroup(37).then((res) => {
@@ -41,21 +40,28 @@ function App() {
       setdeploygroupFMMList(res);
     });
 
-    asyncGetDeployList(37).then((res)=>{
-      setoptionslist(res);
-    })
+    asyncGetDeployList(37, "Cotrolia")
+      .then((res) => {
+        return res;
+      })
+      .then(async (res) => {
+        var response = await asyncGetDeployList(75, "FMM").then((response) => {
+          return response
+        });
+
+        console.log([res,response]);
+
+        setoptionslist([res,response]);
+      });
   }, []);
 
   setTimeout(() => {
-    console.log("tick");
     setclicklock(true);
   }, 5000);
 
   return (
     <div className="App">
-      <Multiselect
-        options={optionslist}
-      />
+      <Multiselect options={optionslist} />
       <DeployGroup
         groupname={"Cotrolia"}
         deployList={deploygroupCotroList}
