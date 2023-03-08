@@ -1,5 +1,4 @@
 import axios from "axios";
-import reduxlatestpipeline, { add } from "../redux/LatestPipeline";
 
 /**
  * Get the latest pipeline of a project
@@ -29,8 +28,6 @@ function getLatestPipeline(projectid) {
           web_url: resp.data[0].web_url,
         };
       }
-
-      reduxlatestpipeline.dispatch(add({ latestpipeline: Gitpipeline }));
 
       return Gitpipeline;
     });

@@ -3,14 +3,12 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useState, useEffect } from "react";
 
 import DeployGroup from "./components/DeployGroup";
+import { getDeployGroup } from "./functions/getDeployGroup";
+import { getDeployGroupName } from "./functions/getDeployGroupName";
 
+// Data en Brute
 import deployCotro from "./data/deployCotrolia.json";
 import deployFMM from "./data/deployFMM.json";
-import { getDeployGroup } from "./functions/getDeployGroup";
-import getLatestPipeline from "./functions/getLatestPipeline";
-
-import reduxdeploy from "./redux/Deployement";
-import reduxlatestpipeline from "./redux/LatestPipeline";
 
 //37 -> cotrolia
 //75 -> FMM
@@ -19,31 +17,33 @@ function App() {
   // const [deploygroupCotro, setdeploygroupCotro] = useState({ name: "", deployList: [] });
   const [deploygroupCotroName, setdeploygroupCotroName] = useState("");
   const [deploygroupCotroList, setdeploygroupCotroList] = useState([]);
-  /* const [deploygroupFMM, setdeploygroupFMM] = useState({ name: "", deployList: [] }); */
-const asyncGetDeployGroup = async () => {
-  const result = await getDeployGroup(37)
 
-  return result
-  }
+  const asyncGetDeployGroup = async (groupid) => {
+    const result = await getDeployGroup(groupid);
+
+    return result;
+  };
+
+  const asyncGetDeployGroupName = async (groupid) => {
+    const result = await getDeployGroupName(groupid);
+
+    return result;
+  };
 
   useEffect(() => {
-    asyncGetDeployGroup()
-      .then((res) => {
-        setdeploygroupCotroName(res.name)
-        setdeploygroupCotroList(res.deployList)
-      })
-      .catch((e) => {
-        console.log(e.message)
-      })
-  }, [])
+    asyncGetDeployGroupName(37).then((res) => {
+      setdeploygroupCotroName(res);
+      console.log(res)
+    });
+  },[]);
 
+  useEffect(() => {
+    asyncGetDeployGroup(37).then((res) => {
+      setdeploygroupCotroList(res);
+    });
+  },[]);
 
-  /* getDeployGroup(75).then((result) => {
-    setdeploygroupFMM(result);
-  });
- */
   return (
-
     <div className="App">
       <DeployGroup
         groupname={deploygroupCotroName}

@@ -5,6 +5,7 @@ import DeployIMG from "./DeployIMG";
  * @returns 
  */
 function DeployCard(props) {
+  console.log(props)
   let progressClass =
     "progress-bar progress-bar-striped " + props.deploy.latestpipeline?.status;
 
