@@ -16,7 +16,7 @@ import reduxlatestpipeline from "./redux/LatestPipeline";
 
 function App() {
   getDeployGroup(37);
-  getLatestPipeline(161);
+  
   return (
     <div className="App">
       <button

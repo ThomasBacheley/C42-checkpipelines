@@ -7,11 +7,11 @@
 }
 
 .running {
-  background-color: #428FDC;
+  background-color: #428fdc;
 }
 
 .success {
-  background-color: #2DA160;
+  background-color: #2da160;
 }
 
 .failed {
@@ -27,6 +27,16 @@
 }
 
 a {
-  color:white;
+  color: white;
   text-decoration: none;
+}
+
+.progress:hover {
+  transform: scale(1.1);
+}
+
+a:hover {
+  color: white;
+  text-decoration: underline;
+  font-weight: 700;
 }
