@@ -14,12 +14,7 @@ function getLatestPipeline(projectid) {
         import.meta.env.VITE_GITLAB_ACCESS_TOKEN
     )
     .then((resp) => {
-      var Gitpipeline = {
-        id: 0,
-        ref: "ref",
-        status: undefined,
-        web_url: "https://google.com",
-      };
+      var Gitpipeline = null;
 
       if (resp.data[0]) {
         Gitpipeline = {
