@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import DeployIMG from "./DeployIMG";
-
-=======
->>>>>>> 39f22195eb9182924ff7c91e3214e0063344bdff
 /**
  * render a 'deploy card' to display information about 1 deploy
  * @param {*} props 
