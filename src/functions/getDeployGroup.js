@@ -20,7 +20,6 @@ function getDeployGroup(groupid) {
 
       resp.data.forEach((data) => {
         
-        console.log(getLatestPipeline(data.id));
         var pipeline = reduxlatestpipeline.getState().latestpipeline.pipeline;
 
         var deploy = {
