@@ -14,9 +14,13 @@ import deployFMM from "./data/deployFMM.json";
 //75 -> FMM
 
 function App() {
-  // const [deploygroupCotro, setdeploygroupCotro] = useState({ name: "", deployList: [] });
   const [deploygroupCotroName, setdeploygroupCotroName] = useState("");
   const [deploygroupCotroList, setdeploygroupCotroList] = useState([]);
+
+  const [deploygroupFMMName, setdeploygroupFMMName] = useState("");
+  const [deploygroupFMMList, setdeploygroupFMMList] = useState([]);
+
+  const [clicklock,setclicklock] = useState(false);
 
   const asyncGetDeployGroup = async (groupid) => {
     const result = await getDeployGroup(groupid);
@@ -33,15 +37,27 @@ function App() {
   useEffect(() => {
     asyncGetDeployGroupName(37).then((res) => {
       setdeploygroupCotroName(res);
-      console.log(res)
     });
-  },[]);
+
+    asyncGetDeployGroupName(75).then((res) => {
+      setdeploygroupFMMName(res);
+    });
+  }, []);
 
   useEffect(() => {
     asyncGetDeployGroup(37).then((res) => {
       setdeploygroupCotroList(res);
     });
-  },[]);
+
+    asyncGetDeployGroup(75).then((res) => {
+      setdeploygroupFMMList(res);
+    });
+  }, []);
+
+  setTimeout(()=>{
+    console.log('tick');
+    setclicklock(true);
+  },5000)
 
   return (
     <div className="App">
@@ -49,10 +65,10 @@ function App() {
         groupname={deploygroupCotroName}
         deployList={deploygroupCotroList}
       ></DeployGroup>
-      {/* <DeployGroup
-        groupname={deploygroupFMM.name}
-        deployList={deploygroupFMM.deployList}
-      ></DeployGroup> */}
+      <DeployGroup
+        groupname={deploygroupFMMName}
+        deployList={deploygroupFMMList }
+      ></DeployGroup>
     </div>
   );
 }

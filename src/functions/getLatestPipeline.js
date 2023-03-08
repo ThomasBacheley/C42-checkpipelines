@@ -3,6 +3,7 @@ import axios from "axios";
 /**
  * Get the latest pipeline of a project
  * @param {int} projectid the projectid
+ * @returns {object} Gitpipeline
  */
 function getLatestPipeline(projectid) {
   return axios

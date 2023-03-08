@@ -4,6 +4,7 @@ import getLatestPipeline from "./getLatestPipeline";
 /**
  * get all Deployement from a groupip
  * @param {int} groupid
+ * @returns {array} deploygroup
  */
 function getDeployGroup(groupid) {
   return axios

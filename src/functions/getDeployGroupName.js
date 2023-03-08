@@ -3,6 +3,7 @@ import axios from "axios";
 /**
  * get Deployement group name
  * @param {int} groupid
+ * @returns {string} groupname
  */
 function getDeployGroupName(groupid) {
   return axios

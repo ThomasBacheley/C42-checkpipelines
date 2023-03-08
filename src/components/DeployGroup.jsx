@@ -3,13 +3,8 @@ import DeployCard from "./DeployCard";
 /**
  * Display a 'Deploy group' (name and list of deployement)
  * @param {*} props
- * @returns
  */
 function DeployGroup(props) {
-  /* setInterval(()=>{
-    console.log('suuu')
-  },10000) */
-  console.log(props)
   return (
     <div className="border rounded m-2" style={{ background: "#F8F9FA" }}>
       <h1>{props.groupname}</h1>
