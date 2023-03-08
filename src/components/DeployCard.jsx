@@ -1,3 +1,5 @@
+import DeployIMG from "./DeployIMG";
+
 function DeployCard(props) {
   let progressClass =
     "progress-bar progress-bar-striped " + props.deploy.latestpipeline.status;
@@ -6,9 +8,13 @@ function DeployCard(props) {
     ? (progressClass += " progress-bar-animated")
     : (progressClass += "");
 
+  var img = '';
+
+  props.deploy.avatar_url ? img = <img className="card-img-top" src={props.deploy.avatar_url} alt="" /> : img = <DeployIMG className="card-img-top" deployname={props.deploy.name}/>;
+
   return (
     <div className="deploycard card p-2 m-2">
-      <img className="card-img-top" src={props.deploy.avatar_url} alt=""></img>
+      {img}
       <div className="card-body">
         <h5 className="card-title">{props.deploy.name}</h5>
         {/* <p className="card-text">{props.deploy.description}</p> */}
@@ -22,7 +28,8 @@ function DeployCard(props) {
             className={progressClass}
           >
             <a target={"_blank"} href={props.deploy.latestpipeline.web_url}>
-              #{props.deploy.latestpipeline.ref} ({props.deploy.latestpipeline.id})
+              #{props.deploy.latestpipeline.ref} (
+              {props.deploy.latestpipeline.id})
             </a>
           </div>
         </div>

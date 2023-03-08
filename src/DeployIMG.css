@@ -1,0 +1,22 @@
+.gl-avatar-identicon {
+    text-align: center;
+    vertical-align: top;
+    color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.gl-avatar {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+}
+
+.gl-avatar-identicon-bg1 {
+    background-color: #660e00;
+}
+
