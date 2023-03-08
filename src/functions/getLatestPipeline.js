@@ -1,6 +1,10 @@
 import axios from "axios";
 import reduxlatestpipeline, { add } from "../redux/LatestPipeline";
 
+/**
+ * Get the latest pipeline of a project
+ * @param {int} projectid the projectid
+ */
 function getLatestPipeline(projectid) {
   axios
     .get(

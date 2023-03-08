@@ -4,9 +4,8 @@ import getLatestPipeline from "./getLatestPipeline";
 import reduxlatestpipeline from "../redux/LatestPipeline";
 
 /**
- *
- * @param {int} groupid
- * @returns
+ * get all Deployement from a groupip
+ * @param {int} groupid 
  */
 function getDeployGroup(groupid) {
   axios
@@ -34,23 +33,16 @@ function getDeployGroup(groupid) {
 
         reduxdeploy.dispatch(addDeploy({deploy:deploy}));
       });
-
-
-      return [];
     })
     .catch((err) => {
       console.error(err);
     });
-
-  var temp = [];
-
-  return temp;
 }
 
 /**
- *
- * @param {array} groupid_array
- * @returns
+ * get all deployement for each item in the array
+ * @param {array} groupid_array 
+ * @returns 
  */
 async function getDeployGroupArray(groupid_array) {
   var temparray = [];

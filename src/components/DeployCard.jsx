@@ -1,5 +1,10 @@
 import DeployIMG from "./DeployIMG";
 
+/**
+ * render a 'deploy card' to display information about 1 deploy
+ * @param {*} props 
+ * @returns 
+ */
 function DeployCard(props) {
   let progressClass =
     "progress-bar progress-bar-striped " + props.deploy.latestpipeline.status;

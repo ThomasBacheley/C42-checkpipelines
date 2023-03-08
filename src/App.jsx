@@ -6,7 +6,6 @@ import DeployGroup from "./components/DeployGroup";
 import deployCotro from "./data/deployCotrolia.json";
 import deployFMM from "./data/deployFMM.json";
 import { getDeployGroup } from "./functions/getDeployGroup";
-import getLatestPipeline from "./functions/getLatestPipeline";
 
 import reduxdeploy from "./redux/Deployement";
 import reduxlatestpipeline from "./redux/LatestPipeline";
@@ -25,7 +24,7 @@ function App() {
           console.log(reduxlatestpipeline.getState().latestpipeline.pipeline);
         }}
       >
-        Click Me
+        Afficher Redux
       </button>
       <DeployGroup
         groupname={deployCotro.name}
