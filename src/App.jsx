@@ -26,10 +26,12 @@ function App() {
       >
         Afficher Redux
       </button>
+      <h5>deployCotrolia.json</h5>
       <DeployGroup
         groupname={deployCotro.name}
         deployList={deployCotro.deployList}
       ></DeployGroup>
+      <h5>deployFMM.json</h5>
       <DeployGroup
         groupname={deployFMM.name}
         deployList={deployFMM.deployList}
