@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 
 import DeployGroup from "./components/DeployGroup";
 import { getDeployGroup } from "./functions/getDeployGroup";
+import { getDeployList } from "./functions/getDeployList";
 
 // Data en Brute
 import deployCotro from "./data/deployCotrolia.json";
 import deployFMM from "./data/deployFMM.json";
+import Multiselect from "./components/Multiselect";
 
 //37 -> cotrolia
 //75 -> FMM
@@ -15,14 +17,20 @@ import deployFMM from "./data/deployFMM.json";
 function App() {
   const [deploygroupCotroList, setdeploygroupCotroList] = useState([]);
   const [deploygroupFMMList, setdeploygroupFMMList] = useState([]);
+  const [optionslist, setoptionslist] = useState([]);
 
-  const [clicklock,setclicklock] = useState(false);
+  const [clicklock, setclicklock] = useState(false);
 
   const asyncGetDeployGroup = async (groupid) => {
     const result = await getDeployGroup(groupid);
 
     return result;
   };
+
+  const asyncGetDeployList = async (groupid)=>{
+    const result = await getDeployList(groupid);
+    return result;
+  }
 
   useEffect(() => {
     asyncGetDeployGroup(37).then((res) => {
@@ -32,22 +40,29 @@ function App() {
     asyncGetDeployGroup(75).then((res) => {
       setdeploygroupFMMList(res);
     });
+
+    asyncGetDeployList(37).then((res)=>{
+      setoptionslist(res);
+    })
   }, []);
 
-  setTimeout(()=>{
-    console.log('tick');
+  setTimeout(() => {
+    console.log("tick");
     setclicklock(true);
-  },5000)
+  }, 5000);
 
   return (
     <div className="App">
+      <Multiselect
+        options={optionslist}
+      />
       <DeployGroup
         groupname={"Cotrolia"}
         deployList={deploygroupCotroList}
       ></DeployGroup>
       <DeployGroup
         groupname={"FMM"}
-        deployList={deploygroupFMMList }
+        deployList={deploygroupFMMList}
       ></DeployGroup>
     </div>
   );
