@@ -1,10 +1,8 @@
 import DeployCard from "./DeployCard";
-import { useState } from "react";
 
 /**
  * Display a 'Deploy group' (name and list of deployement)
  * @param {*} props
- * @returns
  */
 function DeployGroup(props) {
   return (
@@ -12,7 +10,7 @@ function DeployGroup(props) {
       <h1>{props.groupname}</h1>
       <div className="d-flex justify-content-around flex-wrap">
         {props.deployList.map((deploy) => (
-          <DeployCard key={deploy.id} deploy={deploy}></DeployCard>
+          <DeployCard key={deploy.id} deploy={deploy} />
         ))}
       </div>
     </div>
