@@ -3,7 +3,11 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useState, useEffect } from "react";
 
 import DeployGroup from "./components/DeployGroup";
+import Multiselect from "./components/Multiselect";
+
 import { getDeployGroup } from "./functions/getDeployGroup";
+import { getDeployList } from "./functions/getDeployList";
+import { getDeploy } from "./functions/getDeploy";
 
 // Data en Brute
 import deployCotro from "./data/deployCotrolia.json";
@@ -15,12 +19,31 @@ import deployFMM from "./data/deployFMM.json";
 function App() {
   const [deploygroupCotroList, setdeploygroupCotroList] = useState([]);
   const [deploygroupFMMList, setdeploygroupFMMList] = useState([]);
+  const [optionslist, setoptionslist] = useState([]);
 
-  const [clicklock,setclicklock] = useState(false);
+  const [SelectedOptions,setSelectedOptions] = useState([]);
+
+  const setSOptions = (selectedOptions) => {
+    setSelectedOptions(selectedOptions);
+    var deploy = [];
+    SelectedOptions.forEach(async (option)=>{
+      var deploytemp = await getDeploy(option.value);
+      deploy.push(deploytemp);
+    });
+    console.log(deploy);
+  };
+
+
+  const [clicklock, setclicklock] = useState(false);
 
   const asyncGetDeployGroup = async (groupid) => {
     const result = await getDeployGroup(groupid);
+    
+    return result;
+  };
 
+  const asyncGetDeployList = async (groupid, groupname) => {
+    const result = await getDeployList(groupid, groupname);
     return result;
   };
 
@@ -32,22 +55,34 @@ function App() {
     asyncGetDeployGroup(75).then((res) => {
       setdeploygroupFMMList(res);
     });
+
+    asyncGetDeployList(37, "Cotrolia")
+      .then((res) => {
+        return res;
+      })
+      .then(async (res) => {
+        var response = await asyncGetDeployList(75, "FMM").then((response) => {
+          return response
+        });
+
+        setoptionslist([res,response]);
+      });
   }, []);
 
-  setTimeout(()=>{
-    console.log('tick');
+  setTimeout(() => {
     setclicklock(true);
-  },5000)
+  }, 5000);
 
   return (
     <div className="App">
+      <Multiselect setSOptions={setSOptions} options={optionslist} />
       <DeployGroup
         groupname={"Cotrolia"}
         deployList={deploygroupCotroList}
       ></DeployGroup>
       <DeployGroup
         groupname={"FMM"}
-        deployList={deploygroupFMMList }
+        deployList={deploygroupFMMList}
       ></DeployGroup>
     </div>
   );
