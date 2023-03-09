@@ -16,7 +16,7 @@ const groupBadgeStyles = {
     fontWeight: 'normal',
     lineHeight: '1',
     minWidth: 1,
-    padding: '0.16666666666667em 0.5em',
+    padding: '0.17em 0.5em',
     textAlign: 'center',
   };
   
