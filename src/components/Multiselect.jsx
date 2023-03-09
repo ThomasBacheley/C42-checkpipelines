@@ -30,11 +30,9 @@ const groupBadgeStyles = {
 const animatedComponents = makeAnimated();
 
 function Multiselect(props) {
-  const [selectedOption, setSelectedOption] = useState([]);
 
   const handleChange = (selectedOptions) => {
-    console.log(selectedOptions);
-    setSelectedOption([...selectedOption, selectedOptions]);
+    props.setSOptions(selectedOptions);
   };
 
   return (

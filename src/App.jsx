@@ -3,13 +3,15 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useState, useEffect } from "react";
 
 import DeployGroup from "./components/DeployGroup";
+import Multiselect from "./components/Multiselect";
+
 import { getDeployGroup } from "./functions/getDeployGroup";
 import { getDeployList } from "./functions/getDeployList";
+import { getDeploy } from "./functions/getDeploy";
 
 // Data en Brute
 import deployCotro from "./data/deployCotrolia.json";
 import deployFMM from "./data/deployFMM.json";
-import Multiselect from "./components/Multiselect";
 
 //37 -> cotrolia
 //75 -> FMM
@@ -19,10 +21,24 @@ function App() {
   const [deploygroupFMMList, setdeploygroupFMMList] = useState([]);
   const [optionslist, setoptionslist] = useState([]);
 
+  const [SelectedOptions,setSelectedOptions] = useState([]);
+
+  const setSOptions = (selectedOptions) => {
+    setSelectedOptions(selectedOptions);
+    var deploy = [];
+    SelectedOptions.forEach(async (option)=>{
+      var deploytemp = await getDeploy(option.value);
+      deploy.push(deploytemp);
+    });
+    console.log(deploy);
+  };
+
+
   const [clicklock, setclicklock] = useState(false);
 
   const asyncGetDeployGroup = async (groupid) => {
     const result = await getDeployGroup(groupid);
+    
     return result;
   };
 
@@ -49,8 +65,6 @@ function App() {
           return response
         });
 
-        console.log([res,response]);
-
         setoptionslist([res,response]);
       });
   }, []);
@@ -61,7 +75,7 @@ function App() {
 
   return (
     <div className="App">
-      <Multiselect options={optionslist} />
+      <Multiselect setSOptions={setSOptions} options={optionslist} />
       <DeployGroup
         groupname={"Cotrolia"}
         deployList={deploygroupCotroList}
