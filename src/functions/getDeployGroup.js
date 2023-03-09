@@ -1,6 +1,6 @@
 import axios from "axios";
 import getLatestPipeline from "./getLatestPipeline";
-
+import configuration from "../configuration.json";
 /**
  * get all Deployement from a groupip
  * @param {int} groupid
@@ -9,26 +9,24 @@ import getLatestPipeline from "./getLatestPipeline";
 function getDeployGroup(groupid) {
   return axios
     .get(
-      "https://git.code42.io/api/v4/groups/" +
-        groupid +
-        "/projects?access_token=" +
+      `${configuration.git_url}/groups/${groupid}/projects?access_token=${
         import.meta.env.VITE_GITLAB_ACCESS_TOKEN
+      }`
     )
     .then((resp) => {
-      var deploygroup = []
+      var deploygroup = [];
 
       resp.data.forEach((data) => {
         getLatestPipeline(data.id).then((pipeline) => {
           var deploy = {
             id: data.id,
-            avatar_url: data.avatar_url,
             name: data.name,
+            avatar_url: data.avatar_url,
             description: data.description,
             latestpipeline: pipeline,
           };
 
           deploygroup.push(deploy);
-
         });
       });
 
