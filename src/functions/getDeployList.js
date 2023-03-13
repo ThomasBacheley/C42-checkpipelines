@@ -1,4 +1,5 @@
 import axios from "axios";
+import configuration from "../configuration.json";
 /**
  * get all Deployement info from a groupip
  * @param {int} groupid
@@ -8,17 +9,15 @@ import axios from "axios";
 function getDeployList(groupid, groupname) {
   return axios
     .get(
-      "https://git.code42.io/api/v4/groups/" +
-        groupid +
-        "/projects?access_token=" +
+      `${configuration.git_url}/groups/${groupid}/projects?access_token=${
         import.meta.env.VITE_GITLAB_ACCESS_TOKEN
+      }`
     )
     .then((resp) => {
-      var deploylist =
-        {
-          label: groupname,
-          options: [],
-        };
+      var deploylist = {
+        label: groupname,
+        options: [],
+      };
 
       resp.data.forEach((data) => {
         var deploy = {

@@ -1,0 +1,12 @@
+{
+    "git_url":"https://git.code42.io/api/v4",
+    "groups":[
+        {
+            "name":"Cotrolia",
+            "groupid":37
+        },{
+            "name":"FMM",
+            "groupid":75
+        }
+    ]
+}

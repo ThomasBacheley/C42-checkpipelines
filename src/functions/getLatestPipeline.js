@@ -1,4 +1,5 @@
 import axios from "axios";
+import configuration from "../configuration.json";
 
 /**
  * Get the latest pipeline of a project
@@ -8,10 +9,9 @@ import axios from "axios";
 function getLatestPipeline(projectid) {
   return axios
     .get(
-      "https://git.code42.io/api/v4/projects/" +
-        projectid +
-        "/pipelines?access_token=" +
+      `${configuration.git_url}/projects/${projectid}/pipelines?access_token=${
         import.meta.env.VITE_GITLAB_ACCESS_TOKEN
+      }`
     )
     .then((resp) => {
       var Gitpipeline = null;

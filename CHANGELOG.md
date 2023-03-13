@@ -8,6 +8,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 # <span style='color:white;background-color:#ed6b00;border-radius:5px;padding: 5px;font-size:small'>Nouveautés</span> [1.1.00] - 2023-??-??
 
 - Added :
+    - [#35] Ajout d'un fichier de configuration + lecture de celui ci
     - [#23] Ajout d'un multiselect pour filtrer les deploy à afficher
 
 - Fixed :
