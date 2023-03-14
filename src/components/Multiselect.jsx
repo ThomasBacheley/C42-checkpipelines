@@ -1,5 +1,4 @@
 import Select from "react-select";
-import { useState } from "react";
 import makeAnimated from "react-select/animated";
 
 const groupStyles = {
@@ -32,7 +31,7 @@ const animatedComponents = makeAnimated();
 function Multiselect(props) {
 
   const handleChange = (selectedOptions) => {
-    props.setSOptions(selectedOptions);
+    props.setOptions(selectedOptions);
   };
 
   return (

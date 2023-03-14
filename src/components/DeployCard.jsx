@@ -1,5 +1,5 @@
 import DeployIMG from "./DeployIMG";
-import LatestPipeline from "./LatestPipeline";
+import LatestPipeline from "./LatestPipeline"
 /**
  * render a 'deploy card' to display information about 1 deploy
  * @param {*} props 
