@@ -7,6 +7,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 # <span style='color:white;background-color:#ed6b00;border-radius:5px;padding: 5px;font-size:small'>Nouveautés</span> [1.2.00] - 2023-??-??
 
+- Added :
+    - [#46] Ajout d'une route vers une page config
+
 [1.1.00] - 2023-03-14
 
 - Added :
