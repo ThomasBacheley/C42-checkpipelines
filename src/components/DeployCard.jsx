@@ -1,7 +1,8 @@
 import DeployIMG from "./DeployIMG";
+import LatestPipeline from "./LatestPipeline"
+
 /**
  * render a 'deploy card' to display information about 1 deploy
- * @param {*} props 
  */
 function DeployCard(props) {
   let progressClass =
@@ -20,21 +21,7 @@ function DeployCard(props) {
       {img}
       <div className="card-body">
         <h5 className="card-title">{props.deploy.name}</h5>
-        <div className="progress">
-          <div
-            role="progressbar"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="100"
-            style={{ width: "100%" }}
-            className={progressClass}
-          >
-            <a target={"_blank"} href={props.deploy.latestpipeline?.web_url}>
-              #{props.deploy.latestpipeline?.ref} (
-              {props.deploy.latestpipeline?.id})
-            </a>
-          </div>
-        </div>
+        <LatestPipeline latestpipeline={props.deploy.latestpipeline}/>
       </div>
     </div>
   );

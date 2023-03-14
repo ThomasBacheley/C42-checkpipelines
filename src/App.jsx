@@ -3,72 +3,102 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useState, useEffect } from "react";
 
 import DeployGroup from "./components/DeployGroup";
-import { getDeployGroup } from "./functions/getDeployGroup";
-import { getDeployGroupName } from "./functions/getDeployGroupName";
+import Multiselect from "./components/Multiselect";
 
-// Data en Brute
-import deployCotro from "./data/deployCotrolia.json";
-import deployFMM from "./data/deployFMM.json";
+import {
+  getAllDeployFromDeployGroups,
+  getDeployListForOption,
+  getDeployment,
+} from "./functions/getDeploy";
 
-//37 -> cotrolia
-//75 -> FMM
+import configuration from "./configuration.json";
+import LoadingButton from "./components/DeployButton";
 
 function App() {
-  const [deploygroupCotroName, setdeploygroupCotroName] = useState("");
-  const [deploygroupCotroList, setdeploygroupCotroList] = useState([]);
+  const [deployGroup, setDeployGroup] = useState([]);
 
-  const [deploygroupFMMName, setdeploygroupFMMName] = useState("");
-  const [deploygroupFMMList, setdeploygroupFMMList] = useState([]);
+  const [optionslist, setoptionslist] = useState([]);
+  const [clicklock, setclicklock] = useState(false); // pour trigger je ne sais pas pourquoi
 
-  const [clicklock,setclicklock] = useState(false);
+  const [SelectedOptions, setSelectedOptions] = useState([]);
 
-  const asyncGetDeployGroup = async (groupid) => {
-    const result = await getDeployGroup(groupid);
+  const sleep = (ms) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
 
+  const setOptions = (selectedOptions) => {
+    let temp = [];
+    selectedOptions.map((item) => {
+      temp.push(item.value);
+    });
+    setSelectedOptions(temp);
+  };
+
+  const asyncGetDeployment = async (array) => {
+    const result = await getDeployment(array);
     return result;
   };
 
-  const asyncGetDeployGroupName = async (groupid) => {
-    const result = await getDeployGroupName(groupid);
-
+  const asynGetAllDeployFromDeployGroups = async (grouparrayid) => {
+    const result = await getAllDeployFromDeployGroups(grouparrayid);
     return result;
   };
 
+  const asyncGetDeployListForOption = async (groupid, groupname) => {
+    const result = await getDeployListForOption(groupid, groupname);
+    return result;
+  };
+
+  let temp = [];
+
+  configuration.groups.forEach((group) => { temp.push(group.groupid); });
+
   useEffect(() => {
-    asyncGetDeployGroupName(37).then((res) => {
-      setdeploygroupCotroName(res);
+    asynGetAllDeployFromDeployGroups(temp).then((res) => {
+      setDeployGroup(res);
     });
 
-    asyncGetDeployGroupName(75).then((res) => {
-      setdeploygroupFMMName(res);
-    });
-  }, []);
+    //pour recuperer les 'options' du multiselect
+    asyncGetDeployListForOption(
+      configuration.groups[0].groupid,
+      configuration.groups[0].name
+    ).then(async (res) => {
+      var response = await asyncGetDeployListForOption(
+        configuration.groups[1].groupid,
+        configuration.groups[1].name
+      ).then((response) => {
+        return response;
+      });
 
-  useEffect(() => {
-    asyncGetDeployGroup(37).then((res) => {
-      setdeploygroupCotroList(res);
+      setoptionslist([res, response]);
     });
+  }, [clicklock]);
 
-    asyncGetDeployGroup(75).then((res) => {
-      setdeploygroupFMMList(res);
-    });
-  }, []);
-
-  setTimeout(()=>{
-    console.log('tick');
-    setclicklock(true);
-  },5000)
+  sleep(3000).then(() => {
+    setInterval(async () => {
+      console.log("ping");
+      /* asyncGetDeployment(SelectedOptions).then(async (result) => {
+        console.log(result);
+      }); */
+    }, configuration.interval * 1000);
+  });
 
   return (
     <div className="App">
-      <DeployGroup
-        groupname={deploygroupCotroName}
-        deployList={deploygroupCotroList}
-      ></DeployGroup>
-      <DeployGroup
-        groupname={deploygroupFMMName}
-        deployList={deploygroupFMMList }
-      ></DeployGroup>
+      <Multiselect setOptions={setOptions} options={optionslist} />
+      <LoadingButton
+        setDeployGroup={setDeployGroup}
+        options={SelectedOptions}
+      />
+      <div>
+        {deployGroup.map((deploy) => (
+          <DeployGroup
+            key={deploy.groupname}
+            groupname={deploy.groupname}
+            deployList={deploy.deployList}
+          />
+        ))}
+      </div>
     </div>
   );
 }
