@@ -49,11 +49,12 @@ function App() {
     return result;
   };
 
+  let temp = [];
+
+  configuration.groups.forEach((group) => { temp.push(group.groupid); });
+
   useEffect(() => {
-    asynGetAllDeployFromDeployGroups([
-      configuration.groups[0].groupid,
-      configuration.groups[1].groupid,
-    ]).then((res) => {
+    asynGetAllDeployFromDeployGroups(temp).then((res) => {
       setDeployGroup(res);
     });
 

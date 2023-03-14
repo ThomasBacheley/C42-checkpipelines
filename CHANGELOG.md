@@ -13,6 +13,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
     - [#35] Ajout d'un fichier de configuration + lecture de celui ci
     - [#23] Ajout d'un multiselect pour filtrer les deploy à afficher
 
+- Changed : 
+    - [#42] Changement de la façon dont sont chargés les groupes de deployement par defaut
+    
 - Fixed :
     - [#30] Les pipelines par défaut (un depot n'a pas forcement de pipeline) sont maintenant plus compréhensible
     - [#28] Le nom est maintenant corrigé et doit etre mis de façon brute
