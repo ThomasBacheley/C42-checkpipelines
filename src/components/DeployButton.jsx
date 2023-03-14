@@ -8,6 +8,9 @@ const asyncGetDeployment = async (array) => {
   return result;
 };
 
+/**
+ * Button to Load Deployement
+ */
 function LoadingButton(props) {
   const [isLoading, setLoading] = useState(false);
 

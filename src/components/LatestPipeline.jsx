@@ -1,6 +1,5 @@
 /**
  * render a 'pipeline'
- * @param {*} props
  */
 function DeployCard(props) {
   
