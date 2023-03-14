@@ -5,8 +5,7 @@
   "groups": [
     {
       "name": "Cotrolia",
-      "groupid": 37,
-      "defaultdeploy": [192, 161]
+      "groupid": 37
     },
     {
       "name": "FMM",
