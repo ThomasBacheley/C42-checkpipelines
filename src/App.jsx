@@ -8,6 +8,7 @@ import Multiselect from "./components/Multiselect";
 import {
   getAllDeployFromDeployGroups,
   getDeployList,
+  getDeployment,
 } from "./functions/getDeploy";
 
 import configuration from "./configuration.json";
@@ -21,12 +22,21 @@ function App() {
 
   const [SelectedOptions, setSelectedOptions] = useState([]);
 
+  const sleep = (ms) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
   const setOptions = (selectedOptions) => {
     let temp = [];
     selectedOptions.map((item) => {
       temp.push(item.value);
     });
     setSelectedOptions(temp);
+  };
+
+  const asyncGetDeployment = async (array) => {
+    const result = await getDeployment(array);
+    return result;
   };
 
   const asynGetAllDeployFromDeployGroups = async (grouparrayid) => {
@@ -63,17 +73,22 @@ function App() {
     });
   }, [clicklock]);
 
-  setTimeout(()=>{
-    setclicklock(true);
-    setInterval(() => {
+  sleep(3000).then(() => {
+    setInterval(async () => {
       console.log("ping");
+      /* asyncGetDeployment(SelectedOptions).then(async (result) => {
+        console.log(result);
+      }); */
     }, configuration.interval * 1000);
-  },3000)
+  });
 
   return (
     <div className="App">
       <Multiselect setOptions={setOptions} options={optionslist} />
-      <LoadingButton options={SelectedOptions} />
+      <LoadingButton
+        setDeployGroup={setDeployGroup}
+        options={SelectedOptions}
+      />
       <div>
         {deployGroup.map((deploy) => (
           <DeployGroup

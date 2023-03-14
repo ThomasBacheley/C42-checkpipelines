@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 
-import {
-  getDeployment,
-} from "../functions/getDeploy";
+import { getDeployment } from "../functions/getDeploy";
 
 const asyncGetDeployment = async (array) => {
   const result = await getDeployment(array);
@@ -16,8 +14,12 @@ function LoadingButton(props) {
   useEffect(() => {
     if (isLoading) {
       console.log("loading");
-      asyncGetDeployment(props.options).then((result) => {
+      asyncGetDeployment(props.options).then(async (result) => {
+
         console.log(result);
+
+        props.setDeployGroup(result);
+
         setLoading(false);
       });
     }

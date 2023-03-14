@@ -1,6 +1,6 @@
 {
   "git_url": "https://git.code42.io/api/v4",
-  "interval": 3600,
+  "interval": 30,
   "interval_comment": "interval en seconde",
   "groups": [
     {

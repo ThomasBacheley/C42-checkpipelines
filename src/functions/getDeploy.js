@@ -1,5 +1,6 @@
 import axios from "axios";
 import configuration from "../configuration.json";
+import _ from "lodash";
 
 function getDeploy(deployid) {
   return axios
@@ -27,23 +28,45 @@ function getDeploy(deployid) {
 }
 
 async function getDeployment(deployIdArray) {
-  const response = await Promise.all(deployIdArray.map(async (deployid) => {
-    try {
-      const resp = await axios.get(`${configuration.git_url}/projects/${deployid}?access_token=${import.meta.env.VITE_GITLAB_ACCESS_TOKEN}`);
-      const deploy = {
-        id: resp.data.id,
-        name: resp.data.name,
-        avatar_url: resp.data.avatar_url,
-      };
-      const pipeline = await getLatestPipeline(deployid);
-      deploy.latestpipeline = pipeline;
-      return deploy;
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  }));
-  return response.filter(Boolean);
+  var response = await Promise.all(
+    deployIdArray.map(async (deployid) => {
+      try {
+        const resp = await axios.get(
+          `${configuration.git_url}/projects/${deployid}?access_token=${
+            import.meta.env.VITE_GITLAB_ACCESS_TOKEN
+          }`
+        );
+        const deploy = {
+          id: resp.data.id,
+          name: resp.data.name,
+          avatar_url: resp.data.avatar_url,
+          namespace: resp.data.namespace.name,
+        };
+        const pipeline = await getLatestPipeline(deployid);
+        deploy.latestpipeline = pipeline;
+        return deploy;
+      } catch (err) {
+        console.error(err);
+        return null;
+      }
+    })
+  );
+  response = response.filter(Boolean);
+  //on groupe par namespace
+  response = _.groupBy(response, "namespace");
+  //on creer un tableau (car la cetait un objet bizare)
+  response = _.values(response);
+
+  //on creer un tableau temporaire puis on lui ajoute les items adéquat
+  let tempArray = [];
+  await response.map((item) => {
+    tempArray.push({
+      groupname: item[0].namespace,
+      deployList: item,
+    });
+  });
+
+  return tempArray.filter(Boolean);
 }
 
 /* async function getDeployement(deployIdarray) {
