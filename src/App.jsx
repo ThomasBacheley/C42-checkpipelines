@@ -79,7 +79,10 @@ function App() {
   }, []);
 
   setTimeout(() => {
-    setclicklock(true);
+    setclicklock(!clicklock);
+    setInterval(()=>{
+      console.log('ping')
+    },configuration.interval*1000);
   }, 5000);
 
   return (

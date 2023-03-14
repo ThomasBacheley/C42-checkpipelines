@@ -1,5 +1,7 @@
 {
     "git_url":"https://git.code42.io/api/v4",
+    "interval":5,
+    "interval_comment":"interval en seconde",
     "groups":[
         {
             "name":"Cotrolia",
