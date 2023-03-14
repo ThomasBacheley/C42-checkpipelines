@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 
-import { getDeployment } from "../functions/getDeploy";
+import { getDeployment } from "../../functions/getDeploy";
 
 const asyncGetDeployment = async (array) => {
   const result = await getDeployment(array);
@@ -35,6 +35,7 @@ function LoadingButton(props) {
       variant="secondary"
       disabled={isLoading}
       onClick={!isLoading ? handleClick : null}
+      className="m-2"
     >
       {isLoading ? "Loading…" : "Click to load"}
     </Button>

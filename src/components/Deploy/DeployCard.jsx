@@ -17,7 +17,7 @@ function DeployCard(props) {
   props.deploy.avatar_url ? img = <img className="card-img-top" src={props.deploy.avatar_url} alt="" /> : img = <DeployIMG className="card-img-top" deployname={props.deploy.name}/>;
 
   return (
-    <div className="deploycard card p-2 m-2">
+    <div className="deploycard card m-2">
       {img}
       <div className="card-body">
         <h5 className="card-title">{props.deploy.name}</h5>

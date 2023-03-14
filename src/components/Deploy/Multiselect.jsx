@@ -44,8 +44,8 @@ function Multiselect(props) {
       closeMenuOnSelect={false}
       isMulti
       name="select"
+      className="m-2"
       options={props.options}
-      className="p-2"
       formatGroupLabel={formatGroupLabel}
     />
   );

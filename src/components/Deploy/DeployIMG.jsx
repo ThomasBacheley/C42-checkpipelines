@@ -1,4 +1,4 @@
-import "../DeployIMG.css";
+import "../../DeployIMG.css"
 
 /**
  * Display a default image for deployement
