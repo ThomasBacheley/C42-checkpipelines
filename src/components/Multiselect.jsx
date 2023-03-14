@@ -28,6 +28,9 @@ const groupBadgeStyles = {
 
 const animatedComponents = makeAnimated();
 
+/**
+ * a Multiselect for deploy
+ */
 function Multiselect(props) {
 
   const handleChange = (selectedOptions) => {

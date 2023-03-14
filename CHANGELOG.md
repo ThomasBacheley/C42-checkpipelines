@@ -8,15 +8,18 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 # <span style='color:white;background-color:#ed6b00;border-radius:5px;padding: 5px;font-size:small'>Nouveautés</span> [1.1.00] - 2023-??-??
 
 - Added :
+    - [#40] Ajout du documentation utilisateur
     - [#38] Ajout d'une fonction pour récuperer toutes les datas d'un coup
     - [#37] Ajout d'une loop pour récuperer les data périodiquement
     - [#35] Ajout d'un fichier de configuration + lecture de celui ci
     - [#23] Ajout d'un multiselect pour filtrer les deploy à afficher
 
 - Changed : 
+    - [#40] Changement du contenue du Readme.md
     - [#42] Changement de la façon dont sont chargés les groupes de deployement par defaut
     
 - Fixed :
+    - [#40] Clean et documentation du code et des fonctions
     - [#30] Les pipelines par défaut (un depot n'a pas forcement de pipeline) sont maintenant plus compréhensible
     - [#28] Le nom est maintenant corrigé et doit etre mis de façon brute
 

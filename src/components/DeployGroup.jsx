@@ -2,7 +2,6 @@ import DeployCard from "./DeployCard";
 
 /**
  * Display a 'Deploy group' (name and list of deployement)
- * @param {*} props
  */
 function DeployGroup(props) {
   return (

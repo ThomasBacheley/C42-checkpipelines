@@ -7,7 +7,7 @@ import Multiselect from "./components/Multiselect";
 
 import {
   getAllDeployFromDeployGroups,
-  getDeployList,
+  getDeployListForOption,
   getDeployment,
 } from "./functions/getDeploy";
 
@@ -44,8 +44,8 @@ function App() {
     return result;
   };
 
-  const asyncGetDeployList = async (groupid, groupname) => {
-    const result = await getDeployList(groupid, groupname);
+  const asyncGetDeployListForOption = async (groupid, groupname) => {
+    const result = await getDeployListForOption(groupid, groupname);
     return result;
   };
 
@@ -59,11 +59,11 @@ function App() {
     });
 
     //pour recuperer les 'options' du multiselect
-    asyncGetDeployList(
+    asyncGetDeployListForOption(
       configuration.groups[0].groupid,
       configuration.groups[0].name
     ).then(async (res) => {
-      var response = await asyncGetDeployList(
+      var response = await asyncGetDeployListForOption(
         configuration.groups[1].groupid,
         configuration.groups[1].name
       ).then((response) => {

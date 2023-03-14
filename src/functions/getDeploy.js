@@ -2,6 +2,12 @@ import axios from "axios";
 import configuration from "../configuration.json";
 import _ from "lodash";
 
+/**
+ * Get Deployement from a project
+ * 
+ * @param {int} deployid id of the project
+ * @return return the deploy
+ */
 function getDeploy(deployid) {
   return axios
     .get(
@@ -27,6 +33,12 @@ function getDeploy(deployid) {
     });
 }
 
+/**
+ * Get Array of Deployement from a array of project ID
+ * 
+ * @param {Array} deployIdArray array of projectId
+ * @returns  return an array of deployement
+ */
 async function getDeployment(deployIdArray) {
   var response = await Promise.all(
     deployIdArray.map(async (deployid) => {
@@ -69,40 +81,11 @@ async function getDeployment(deployIdArray) {
   return tempArray.filter(Boolean);
 }
 
-/* async function getDeployement(deployIdarray) {
-  var response = [];
-  deployIdarray.map(async (deployid) => {
-    var t = await axios
-      .get(
-        `${configuration.git_url}/projects/${deployid}?access_token=${
-          import.meta.env.VITE_GITLAB_ACCESS_TOKEN
-        }`
-      )
-      .then((resp) => {
-        var deploy = {
-          id: resp.data.id,
-          name: resp.data.name,
-          avatar_url: resp.data.avatar_url,
-        };
-
-        getLatestPipeline(deployid).then((pipeline) => {
-          deploy.latestpipeline = pipeline;
-        });
-
-        return deploy;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-
-    response.push(t);
-  });
-  return response;
-} */
 /**
- * get all Deployement from a groupip
- * @param {int} groupid
- * @returns {array} deploygroup
+ * Get 'Deployement Group' from a group id
+ * 
+ * @param {int} groupid id of the group
+ * @returns return an object 'Deployement Group' who contains informations about deployements in the group
  */
 function getDeployGroup(groupid) {
   return axios
@@ -139,12 +122,12 @@ function getDeployGroup(groupid) {
 }
 
 /**
- * get all Deployement info from a groupip
- * @param {int} groupid
- * @param {string} groupname
- * @returns {array} deploylist
+ * Get 'Deployement Group' from a group id for Option
+ * 
+ * @param {int} groupid id of the group
+ * @returns return an object 'Deployement Group' who contains informations about deployements in the group for option
  */
-function getDeployList(groupid, groupname) {
+function getDeployListForOption(groupid) {
   return axios
     .get(
       `${configuration.git_url}/groups/${groupid}/projects?access_token=${
@@ -153,7 +136,7 @@ function getDeployList(groupid, groupname) {
     )
     .then((resp) => {
       var deploylist = {
-        label: groupname,
+        label: resp.data[0].namespace.name,
         options: [],
       };
 
@@ -174,9 +157,10 @@ function getDeployList(groupid, groupname) {
 }
 
 /**
- * Get the latest pipeline of a project
- * @param {int} projectid the projectid
- * @returns {object} Gitpipeline
+ * Get the Latest pipeline from a project by the projectid
+ * 
+ * @param {int} projectid 
+ * @returns return a 'pipeline' object
  */
 function getLatestPipeline(projectid) {
   return axios
@@ -201,6 +185,12 @@ function getLatestPipeline(projectid) {
     });
 }
 
+/**
+ * Get all deployement from a array of deploy group ID
+ * 
+ * @param {Array} deployGroupArrayId 
+ * @returns return an array of all deployement
+ */
 async function getAllDeployFromDeployGroups(deployGroupArrayId) {
   var response = [];
   for (const deploygroupId of deployGroupArrayId) {
@@ -214,7 +204,7 @@ export {
   getDeploy,
   getDeployment,
   getDeployGroup,
-  getDeployList,
+  getDeployListForOption,
   getLatestPipeline,
   getAllDeployFromDeployGroups,
 };
