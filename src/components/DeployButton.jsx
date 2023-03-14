@@ -5,8 +5,6 @@ import {
   getDeployment,
 } from "../functions/getDeploy";
 
-import configuration from "../configuration.json";
-
 const asyncGetDeployment = async (array) => {
   const result = await getDeployment(array);
   return result;

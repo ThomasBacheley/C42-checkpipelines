@@ -13,12 +13,9 @@ import {
 import configuration from "./configuration.json";
 import LoadingButton from "./components/DeployButton";
 
-//37 -> cotrolia
-//75 -> FMM
-
 function App() {
-  const [deploygroupCotroList, setdeploygroupCotroList] = useState([]);
-  const [deploygroupFMMList, setdeploygroupFMMList] = useState([]);
+  const [deployGroup, setDeployGroup] = useState([]);
+
   const [optionslist, setoptionslist] = useState([]);
   const [clicklock, setclicklock] = useState(false); // pour trigger je ne sais pas pourquoi
 
@@ -26,11 +23,10 @@ function App() {
 
   const setOptions = (selectedOptions) => {
     let temp = [];
-    selectedOptions.map((item)=>{
-      temp.push(item.value)
+    selectedOptions.map((item) => {
+      temp.push(item.value);
     });
     setSelectedOptions(temp);
-    console.log(SelectedOptions);
   };
 
   const asynGetAllDeployFromDeployGroups = async (grouparrayid) => {
@@ -48,52 +44,44 @@ function App() {
       configuration.groups[0].groupid,
       configuration.groups[1].groupid,
     ]).then((res) => {
-      setdeploygroupCotroList(res[0].deployList);
-      setdeploygroupFMMList(res[1].deployList);
+      setDeployGroup(res);
     });
 
     //pour recuperer les 'options' du multiselect
     asyncGetDeployList(
       configuration.groups[0].groupid,
       configuration.groups[0].name
-    )
-      .then((res) => {
-        return res;
-      })
-      .then(async (res) => {
-        var response = await asyncGetDeployList(
-          configuration.groups[1].groupid,
-          configuration.groups[1].name
-        ).then((response) => {
-          return response;
-        });
-
-        setoptionslist([res, response]);
+    ).then(async (res) => {
+      var response = await asyncGetDeployList(
+        configuration.groups[1].groupid,
+        configuration.groups[1].name
+      ).then((response) => {
+        return response;
       });
-  }, []);
 
-  setTimeout(() => {
-    setclicklock(!clicklock);
+      setoptionslist([res, response]);
+    });
+  }, [clicklock]);
+
+  setTimeout(()=>{
+    setclicklock(true);
     setInterval(() => {
       console.log("ping");
     }, configuration.interval * 1000);
-  }, 5000);
+  },3000)
 
   return (
     <div className="App">
       <Multiselect setOptions={setOptions} options={optionslist} />
-      <LoadingButton
-        options={SelectedOptions}
-      />
+      <LoadingButton options={SelectedOptions} />
       <div>
-        <DeployGroup
-          groupname={configuration.groups[0].name}
-          deployList={deploygroupCotroList}
-        ></DeployGroup>
-        <DeployGroup
-          groupname={configuration.groups[1].name}
-          deployList={deploygroupFMMList}
-        ></DeployGroup>
+        {deployGroup.map((deploy) => (
+          <DeployGroup
+            key={deploy.groupname}
+            groupname={deploy.groupname}
+            deployList={deploy.deployList}
+          />
+        ))}
       </div>
     </div>
   );
